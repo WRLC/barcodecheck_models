@@ -1,0 +1,21 @@
+"""
+Analysis models
+"""
+from sqlalchemy import String
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from barcodecheck_models.extensions import Base
+
+
+class Analysis(Base):  # pylint: disable=too-few-public-methods
+    """
+    Analysis model.
+    """
+    __tablename__ = "analysis"
+
+    id: Mapped[int] = mapped_column(primary_key=True)  # Analysis ID
+    name: Mapped[str] = mapped_column(String(255))  # Analysis name
+
+    izanalyses: Mapped[list["IZAnalysis"]] = relationship(  # type:ignore[name-defined]  # noqa: F821
+        back_populates="analysis",
+        cascade="all, delete-orphan",
+    )

@@ -10,6 +10,7 @@ setup(
     license='MIT',
     packages=['barcodecheck_models'],
     install_requires=[
+        'pymysql',
         'python-dotenv',
         'sqlalchemy',
     ],

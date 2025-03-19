@@ -3,10 +3,13 @@ RowTrayData model.
 """
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
-from .extensions import Base
+from .database import Base
 
 
 class RowTrayData(Base):
+    """
+    RowTrayData model.
+    """
     __tablename__ = 'rowtraydata'
 
     id: Mapped[int] = mapped_column(primary_key=True)

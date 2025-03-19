@@ -1,9 +1,9 @@
 """
 Analysis models
 """
-from sqlalchemy import String
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from .extensions import Base
+from sqlalchemy import String, Row
+from sqlalchemy.orm import Mapped, mapped_column, relationship, Session
+from .database import Base, engine
 
 
 class Analysis(Base):  # pylint: disable=too-few-public-methods
@@ -19,3 +19,17 @@ class Analysis(Base):  # pylint: disable=too-few-public-methods
         back_populates="analysis",
         cascade="all, delete-orphan",
     )
+
+
+def get_analysis_by_name(analysis_name: str) -> Row[tuple[int]] | None:
+    """
+    Get analysis by name
+
+    :param analysis_name: Analysis name
+    :return: Analysis object or None
+    """
+    with Session(engine) as db:
+        analysis = db.query(Analysis.id).filter(Analysis.name == analysis_name).first()
+        db.close()
+
+    return analysis

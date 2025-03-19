@@ -21,7 +21,7 @@ class Analysis(Base):  # pylint: disable=too-few-public-methods
     )
 
 
-def get_analysis_by_name(analysis_name: str) -> Row[tuple[int]] | None:
+def get_analysis_by_name(analysis_name: str) -> Analysis | None:
     """
     Get analysis by name
 
@@ -29,7 +29,7 @@ def get_analysis_by_name(analysis_name: str) -> Row[tuple[int]] | None:
     :return: Analysis object or None
     """
     with Session(engine) as db:
-        analysis = db.query(Analysis.id).filter(Analysis.name == analysis_name).first()
+        analysis = db.query(Analysis).filter(Analysis.name == analysis_name).first()
         db.close()
 
     return analysis

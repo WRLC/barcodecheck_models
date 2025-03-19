@@ -27,7 +27,7 @@ class IZ(Base):  # pylint: disable=too-few-public-methods
     )
 
 
-def get_iz_by_code(iz_code: str) -> Row[tuple[int]] | None:
+def get_iz_by_code(iz_code: str) -> IZ | None:
     """
     Get IZ by code
 
@@ -35,7 +35,7 @@ def get_iz_by_code(iz_code: str) -> Row[tuple[int]] | None:
     :return: IZ object or None
     """
     with Session(engine) as db:
-        iz = db.query(IZ.id).filter(IZ.code == iz_code).first()
+        iz = db.query(IZ).filter(IZ.code == iz_code).first()
         db.close()
 
     return iz

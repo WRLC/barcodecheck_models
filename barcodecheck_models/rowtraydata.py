@@ -3,7 +3,7 @@ RowTrayData model.
 """
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
-from barcodecheck_models.extensions import Base
+from .extensions import Base
 
 
 class RowTrayData(Base):

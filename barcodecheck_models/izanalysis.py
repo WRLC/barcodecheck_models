@@ -3,7 +3,7 @@ IZ-Analysis model
 """
 from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from barcodecheck_models.extensions import Base
+from .extensions import Base
 
 
 class IZAnalysis(Base):  # pylint: disable=too-few-public-methods

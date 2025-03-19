@@ -3,7 +3,7 @@ IZ model
 """
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, MappedColumn, relationship
-from barcodecheck_models.extensions import Base
+from .extensions import Base
 
 
 class IZ(Base):  # pylint: disable=too-few-public-methods

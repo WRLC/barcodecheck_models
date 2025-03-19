@@ -3,8 +3,7 @@ API Key Model
 """
 from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-
-from barcodecheck_models.extensions import Base
+from .extensions import Base
 
 
 class Apikey(Base):  # pylint: disable=too-few-public-methods

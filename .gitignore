@@ -1,3 +1,8 @@
 .idea
+.vscode
 .venv
 .DS_Store
+pyproject.toml
+poetry.lock
+.flake8
+.pylintrc

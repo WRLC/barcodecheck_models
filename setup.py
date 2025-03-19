@@ -11,7 +11,6 @@ setup(
     packages=['barcodecheck_models'],
     install_requires=[
         'sqlalchemy',
-        'python-dotenv',
     ],
     zip_safe=False
 )

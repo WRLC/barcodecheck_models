@@ -23,3 +23,12 @@ class RowTrayData(Base):
 
     def __str__(self):
         return f"{self.barcode} {self.provenance_code}"
+
+    def add_to_db(self):
+        """
+        Add RowTrayData to the database.
+        """
+        with Session(engine) as db:
+            db.add(self)
+            db.commit()
+            db.close()

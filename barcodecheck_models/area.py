@@ -21,7 +21,7 @@ class Area(Base):  # pylint: disable=too-few-public-methods
     )
 
 
-def get_area_by_name(area_name: str) -> Row[tuple[int]] | None:
+def get_area_by_name(area_name: str) -> Area | None:
     """
     Get area by name
 
@@ -29,7 +29,7 @@ def get_area_by_name(area_name: str) -> Row[tuple[int]] | None:
     :return: Area object or None
     """
     with Session(engine) as db:
-        area = db.query(Area.id).filter(Area.name == area_name).first()
+        area = db.query(Area).filter(Area.name == area_name).first()
         db.close()
 
     return area

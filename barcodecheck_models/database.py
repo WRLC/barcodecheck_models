@@ -1,6 +1,7 @@
 """
 Database connection and base model for SQLAlchemy.
 """
+import logging
 import os
 import sqlalchemy.exc
 from dotenv import load_dotenv
@@ -27,7 +28,8 @@ def truncate_table(table_name: str) -> None | sqlalchemy.exc.SQLAlchemyError:
     """
     try:
         with Session(engine) as db:
-            db.execute(f"TRUNCATE TABLE {table_name}")
+            stmt = "TRUNCATE TABLE %s" % table_name
+            db.execute(stmt)
             db.commit()
             db.close()
     except sqlalchemy.exc.SQLAlchemyError as e:

@@ -2,7 +2,6 @@
 Database connection and base model for SQLAlchemy.
 """
 import os
-
 import sqlalchemy.exc
 from dotenv import load_dotenv
 from sqlalchemy import create_engine

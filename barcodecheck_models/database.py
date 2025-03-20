@@ -16,3 +16,13 @@ class Base(DeclarativeBase):  # pylint: disable=too-few-public-methods
     Base class for all models.
     """
     pass  # pylint: disable=unnecessary-pass
+
+
+def add_to_db(row: Base) -> None:
+    """
+    Add RowTrayData to the database.
+    """
+    with Session(engine) as db:
+        db.add(row)
+        db.commit()
+        db.close()

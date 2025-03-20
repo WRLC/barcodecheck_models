@@ -2,6 +2,8 @@
 Database connection and base model for SQLAlchemy.
 """
 import os
+
+import sqlalchemy.exc
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase
@@ -16,6 +18,24 @@ class Base(DeclarativeBase):  # pylint: disable=too-few-public-methods
     Base class for all models.
     """
     pass  # pylint: disable=unnecessary-pass
+
+
+def truncate_table(table_name: str) -> None | sqlalchemy.exc.SQLAlchemyError:
+    """
+    Truncate a table in the database.
+
+    :param table_name: Name of the table to truncate
+    """
+    try:
+        with Session(engine) as db:
+            db.execute(f"TRUNCATE TABLE {table_name}")
+            db.commit()
+            db.close()
+    except sqlalchemy.exc.SQLAlchemyError as e:
+        logging.error(f"Error truncating table {table_name}: {e}")
+        return e
+
+    return None
 
 
 def add_to_db(row: Base) -> None:

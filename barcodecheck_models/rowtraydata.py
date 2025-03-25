@@ -29,30 +29,22 @@ class RowTrayData(Base):
 
 def handle_rowtraydata(
         rows: list[dict[str, str]],
-        columns: dict[str, str]
 ) -> dict[str, int] | sqlalchemy.exc.SQLAlchemyError:
     """
     Handle the row data for the tray data
 
     :param rows: Row data
-    :param columns: Columns dictionary
     :return: None
     """
     success = 0  # Initialize success counter
     error = 0  # Initialize error counter
 
-    # truncate the table
-    truncate = truncate_table(RowTrayData.__tablename__)
-
-    if truncate:  # If truncate is not successful
-        return truncate  # Return the error
-
     for row in rows:  # Iterate through the rows
         # Get the values from the row
-        barcode: str = row[columns['Barcode']] if row[columns['Barcode']] else ''
-        internal_note_1: str = row[columns['Internal Note 1']] if row[columns['Internal Note 1']] else ''
-        item_call_number: str = row[columns['Item Call Number']] if row[columns['Item Call Number']] else ''
-        provenance_code: str = row[columns['Provenance Code']] if row[columns['Provenance Code']] else ''
+        barcode: str = row['Barcode'] if row['Barcode'] else ''
+        internal_note_1: str = row['Internal Note 1'] if row['Internal Note 1'] else ''
+        item_call_number: str = row['Item Call Number'] if row['Item Call Number'] else ''
+        provenance_code: str = row['Provenance Code'] if row['Provenance Code'] else ''
 
         rowtraydata = RowTrayData(
             barcode=barcode,

@@ -32,7 +32,7 @@ def get_iz_analysis_by_iz_and_analysis(iz: IZ, analysis: Analysis) -> IZAnalysis
     :return: Report path or None
     """
     with Session(engine) as db:
-        iz_analysis = db.query(IZAnalysis).filter(IZAnalysis.id == iz.id, IZAnalysis.analysis_id == analysis.id).first()
+        iz_analysis = db.query(IZAnalysis).filter(IZAnalysis.iz_id == iz.id, IZAnalysis.analysis_id == analysis.id).first()
         db.close()
 
     return iz_analysis
